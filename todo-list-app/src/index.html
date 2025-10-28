@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TasksFlow</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <h1><span style="color:#f1c500">JS</span>-<span style="color:#1e90ff">TasksFlow</span></h1>
+        <p class="subtitle">
+          Gère tes tâches, ajoute une date, une priorité, filtre et édite
+          rapidement.
+        </p>
+      </header>
+
+      <form id="task-form" class="task-form">
+        <input
+          id="task-input"
+          placeholder="Nouvelle tâche…"
+          required
+          autocomplete="off"
+        />
+        <input id="due-input" type="date" aria-label="date d'échéance" />
+        <select id="priority-select" aria-label="priorité">
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+
+        <select id="category-select" aria-label="catégorie">
+          <option value="work">Travail</option>
+          <option value="personal" selected>Perso</option>
+          <option value="shopping">Courses</option>
+          <option value="other">Autre</option>
+        </select>
+
+        <button type="submit" class="add-btn">Ajouter</button>
+      </form>
+
+      <div class="controls">
+        <div class="filters" role="tablist" aria-label="Filtres">
+          <button class="filter active" data-filter="all">Tous</button>
+          <button class="filter" data-filter="active">Actifs</button>
+          <button class="filter" data-filter="completed">Terminés</button>
+        </div>
+
+        <div class="actions">
+          <span id="count">0 tâches</span>
+
+          <select id="category-filter" aria-label="Filtrer par catégorie">
+            <option value="all" selected>Toutes catégories</option>
+            <option value="work">Travail</option>
+            <option value="personal">Perso</option>
+            <option value="shopping">Courses</option>
+            <option value="other">Autre</option>
+          </select>
+
+          <select id="sort-select" aria-label="Trier par">
+            <option value="created" selected>Plus récentes</option>
+            <option value="due">Échéance (plus proche)</option>
+            <option value="priority">Priorité (haute → basse)</option>
+          </select>
+
+          <button id="export-btn" class="muted">Exporter</button>
+          <button id="import-btn" class="muted">Importer</button>
+          <input
+            id="import-file"
+            type="file"
+            accept="application/json"
+            style="display: none"
+          />
+
+          <button id="clear-completed" class="muted">Effacer terminées</button>
+        </div>
+      </div>
+
+      <ul id="tasks" class="tasks" aria-live="polite"></ul>
+    </main>
+
+    <!-- canvas confetti (position absolute via CSS) -->
+    <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
